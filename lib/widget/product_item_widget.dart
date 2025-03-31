@@ -65,7 +65,7 @@ class _ProductItemWidgetState extends State<ProductItemWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 16),
+      padding: EdgeInsets.symmetric(horizontal: 16,vertical: 16),
       decoration: BoxDecoration(
           border: Border(bottom: BorderSide(width: 1, color: Colors.grey))),
       child: Column(

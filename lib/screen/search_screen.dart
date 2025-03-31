@@ -17,7 +17,8 @@ class _SearchScreenState extends State<SearchScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
+      body: Container(
+        padding: EdgeInsets.symmetric(horizontal: 16),
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 12),
           child: SingleChildScrollView(
