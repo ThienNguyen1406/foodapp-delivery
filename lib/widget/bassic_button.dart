@@ -9,16 +9,19 @@ class BassicButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(vertical: 16),
-      width: MediaQuery.of(context).size.width*0.9,
-      decoration: BoxDecoration(
-        color: AppColors.primary_Color,
-        borderRadius: BorderRadius.circular(18),
-      ),
-      child: Text(
-        title ?? "Name button",
-        style: AppFonts.GilroyBasic600(18, AppColors.white_Color),
-        textAlign: TextAlign.center,
+      padding: EdgeInsets.symmetric(vertical: 32),
+      child: Container(
+        padding: EdgeInsets.symmetric(vertical: 16),
+        width: MediaQuery.of(context).size.width*0.9,
+        decoration: BoxDecoration(
+          color: AppColors.primary_Color,
+          borderRadius: BorderRadius.circular(18),
+        ),
+        child: Text(
+          title ?? "Name button",
+          style: AppFonts.GilroyBasic600(18, AppColors.white_Color),
+          textAlign: TextAlign.center,
+        ),
       ),
     );
   }
