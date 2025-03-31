@@ -84,32 +84,35 @@ class _CartScreenState extends State<CartScreen> {
                 ),
               ),
             ),
-            Container(
-              padding: EdgeInsets.symmetric(vertical: 16, horizontal: 24),
-              width: MediaQuery.of(context).size.width * 0.9,
-              decoration: BoxDecoration(
-                color: AppColors.primary_Color,
-                borderRadius: BorderRadius.circular(18),
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    "Go to Checkout",
-                    style: AppFonts.GilroyBasic600(18, AppColors.white_Color),
-                  ),
-                  Container(
-                    padding: EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-                    decoration: BoxDecoration(
-                      color: Color(0XFF489E67),
-                      borderRadius: BorderRadius.circular(12),
+            GestureDetector(
+              onTap: (){},
+              child: Container(
+                padding: EdgeInsets.symmetric(vertical: 16, horizontal: 24),
+                width: MediaQuery.of(context).size.width * 0.9,
+                decoration: BoxDecoration(
+                  color: AppColors.primary_Color,
+                  borderRadius: BorderRadius.circular(18),
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      "Go to Checkout",
+                      style: AppFonts.GilroyBasic600(18, AppColors.white_Color),
                     ),
-                    child: Text(
-                      "\$${totalPrice.toStringAsFixed(2)}",
-                      style: AppFonts.GilroyBold400(16, AppColors.white_Color),
+                    Container(
+                      padding: EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                      decoration: BoxDecoration(
+                        color: Color(0XFF489E67),
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      child: Text(
+                        "\$${totalPrice.toStringAsFixed(2)}",
+                        style: AppFonts.GilroyBold400(16, AppColors.white_Color),
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           ],
