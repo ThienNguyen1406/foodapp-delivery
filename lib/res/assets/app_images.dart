@@ -49,6 +49,6 @@ class AppImages {
   static const eggnoddle2 = '$url/egg_noodles2.png';
   static const eggmayzonise = '$url/egg_mayzonyse.png';
   static const image_geo1 = '$url/image_geo1.png';
-  static const image_geo2 = 'lib/res/assets/image_geo2.png';
+  static const image_geo2 = '$url/image_geo2.png';
   static const chicken = '$url/chicken.png';
 }
