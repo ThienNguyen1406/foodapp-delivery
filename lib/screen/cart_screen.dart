@@ -14,6 +14,7 @@ class CartScreen extends StatefulWidget {
 class _CartScreenState extends State<CartScreen> {
   double totalPrice = 0.0;
 
+
   // Giỏ hàng tạm thời với danh sách sản phẩm
   final List<ProductItemWidget> cartItems = [
     ProductItemWidget(title: "Bell Pepper", price: 4.99),
@@ -76,8 +77,7 @@ class _CartScreenState extends State<CartScreen> {
                 child: Column(
                   children: cartItems
                       .map((item) => Padding(
-                            padding: EdgeInsets.symmetric(
-                                vertical: 8), 
+                            padding: EdgeInsets.symmetric(vertical: 8),
                             child: item,
                           ))
                       .toList(),
@@ -85,7 +85,7 @@ class _CartScreenState extends State<CartScreen> {
               ),
             ),
             GestureDetector(
-              onTap: (){},
+              onTap: () {},
               child: Container(
                 padding: EdgeInsets.symmetric(vertical: 16, horizontal: 24),
                 width: MediaQuery.of(context).size.width * 0.9,
@@ -101,14 +101,16 @@ class _CartScreenState extends State<CartScreen> {
                       style: AppFonts.GilroyBasic600(18, AppColors.white_Color),
                     ),
                     Container(
-                      padding: EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 12, vertical: 6),
                       decoration: BoxDecoration(
                         color: Color(0XFF489E67),
                         borderRadius: BorderRadius.circular(12),
                       ),
                       child: Text(
                         "\$${totalPrice.toStringAsFixed(2)}",
-                        style: AppFonts.GilroyBold400(16, AppColors.white_Color),
+                        style:
+                            AppFonts.GilroyBold400(16, AppColors.white_Color),
                       ),
                     ),
                   ],

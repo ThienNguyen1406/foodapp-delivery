@@ -12,6 +12,7 @@ class FavoriteScreen extends StatefulWidget {
 }
 
 class _FavoriteScreenState extends State<FavoriteScreen> {
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
