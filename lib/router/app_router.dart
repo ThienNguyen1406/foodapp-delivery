@@ -6,6 +6,7 @@ import 'package:foodapp_delivery/screen/filters_screen.dart';
 import 'package:foodapp_delivery/screen/notification_screen.dart';
 import 'package:foodapp_delivery/screen/onboard_screen.dart';
 import 'package:foodapp_delivery/screen/phone_number.dart';
+import 'package:foodapp_delivery/screen/product_detail.dart';
 import 'package:foodapp_delivery/screen/select_location_screen.dart';
 import 'package:foodapp_delivery/screen/signup_screen.dart';
 import 'package:foodapp_delivery/screen/sing_in_screen.dart';
@@ -23,6 +24,7 @@ class AppRouter {
   static const String homeScreen = '/homeScreen';
   static const String beverages = '/beveragesScreen';
   static const String filtersScreen = '/filtersScreen';
+  static const String productDetail = '/productDetail';
 
   static final routes = <String, WidgetBuilder>{
     splash: (BuildContext context) => const SplashScreen(),
@@ -36,5 +38,6 @@ class AppRouter {
     homeScreen: (BuildContext context) => const HomeScreen(),
     beverages: (BuildContext context) => const BeveragesScreen(selectedCategories: {}, selectedBrands: {},),
     filtersScreen: (BuildContext context) => const FiltersScreen(),
+     productDetail: (BuildContext context) => const ProductDetail(),
   };
 }

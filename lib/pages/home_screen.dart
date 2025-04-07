@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:foodapp_delivery/res/assets/app_images.dart';
 import 'package:foodapp_delivery/res/theme/colors/app_colors.dart';
 import 'package:foodapp_delivery/res/theme/fonts/app_fonts.dart';
+import 'package:foodapp_delivery/router/app_router.dart';
 import 'package:foodapp_delivery/screen/account_screen.dart';
 import 'package:foodapp_delivery/screen/cart_screen.dart';
 import 'package:foodapp_delivery/screen/explore_screen.dart';
@@ -116,17 +117,22 @@ class HomeScreenContent extends StatelessWidget {
                       onTap: () {},
                     ),
                   ),
-                  Container(
-                    padding: EdgeInsets.only(right: 10),
-                    child: BassicWidget(
-                      title: "Red Apple",
-                      information: "1kg, Priceg",
-                      price: "\$4.99",
-                      imageProduct: Image(
-                        image: AssetImage(AppImages.RedApple_Image),
-                        height: 70,
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.pushNamed(context, AppRouter.productDetail);
+                    },
+                    child: Container(
+                      padding: EdgeInsets.only(right: 10),
+                      child: BassicWidget(
+                        title: "Red Apple",
+                        information: "1kg, Priceg",
+                        price: "\$4.99",
+                        imageProduct: Image(
+                          image: AssetImage(AppImages.RedApple_Image),
+                          height: 70,
+                        ),
+                        onTap: () {},
                       ),
-                      onTap: () {},
                     ),
                   ),
                   Container(
