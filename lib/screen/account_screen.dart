@@ -32,11 +32,13 @@ class _AccountScreenState extends State<AccountScreen> {
                     width: 64,
                   ),
                   Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
                         "Afsar Hossen",
-                        style:
-                            AppFonts.GilroyBold400(20, AppColors.textColor_Black),
+                        style: AppFonts.GilroyBold400(
+                            20, AppColors.textColor_Black),
                       ),
                       Text(
                         "Imshuvo97@gmail.com",
@@ -104,8 +106,8 @@ class _AccountScreenState extends State<AccountScreen> {
                 child: GestureDetector(
                   onTap: () {},
                   child: BasicUserWidget(
-                    iconData:
-                        Icon(Icons.local_activity, size: 28, color: Colors.grey),
+                    iconData: Icon(Icons.local_activity,
+                        size: 28, color: Colors.grey),
                     infor: "Promo Card",
                   ),
                 ),

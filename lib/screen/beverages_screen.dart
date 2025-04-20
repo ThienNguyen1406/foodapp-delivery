@@ -4,7 +4,7 @@ import 'package:foodapp_delivery/res/assets/app_images.dart';
 import 'package:foodapp_delivery/res/theme/colors/app_colors.dart';
 import 'package:foodapp_delivery/res/theme/fonts/app_fonts.dart';
 import 'package:foodapp_delivery/router/app_router.dart';
-import 'package:foodapp_delivery/widget/bassic_widget.dart';
+import 'package:foodapp_delivery/widget/basic_widget.dart';
 
 class BeveragesScreen extends StatefulWidget {
   final Map<String, bool>? selectedCategories;
@@ -29,8 +29,7 @@ class _BeveragesScreenState extends State<BeveragesScreen> {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              SizedBox(
-                  height: MediaQuery.of(context).padding.top), 
+              SizedBox(height: MediaQuery.of(context).padding.top),
               _buildHeader(context),
               const SizedBox(height: 20),
               _buildProductList(),
@@ -61,40 +60,36 @@ class _BeveragesScreenState extends State<BeveragesScreen> {
     );
   }
 
-  /// Danh sách sản phẩm
   Widget _buildProductList() {
     return Column(
       children: [
         _buildProductRow([
-          _buildProductItem(AppImages.coke, "Diet Coke", "335ml", "\$1.99"),
-          _buildProductItem(
-              AppImages.sprite, "Sprite Can", "325ml", "\$1.50"),
+          _buildProductItem(AppImages.coke, "Diet Coke", "335ml", 1.99),
+          _buildProductItem(AppImages.sprite, "Sprite Can", "325ml", 1.50),
         ]),
         const SizedBox(height: 20),
         _buildProductRow([
           _buildProductItem(
-              AppImages.applejuice, "Apple & Grape Juice", "2L", "\$12.99"),
+              AppImages.applejuice, "Apple & Grape Juice", "2L", 12.99),
           _buildProductItem(
-              AppImages.orangejuice, "Orange Juice", "1.5L", "\$15.99"),
+              AppImages.orangejuice, "Orange Juice", "1.5L", 15.99),
+        ]),
+        const SizedBox(height: 20),
+        _buildProductRow([
+          _buildProductItem(AppImages.cocacola, "Coca Cola Can", "325ml", 4.99),
+          _buildProductItem(AppImages.pepsi, "Pepsi Can", "325ml", 4.99),
         ]),
         const SizedBox(height: 20),
         _buildProductRow([
           _buildProductItem(
-              AppImages.cocacola, "Coca Cola Can", "325ml", "\$4.99"),
-          _buildProductItem(AppImages.pepsi, "Pepsi Can", "325ml", "\$4.99"),
-        ]),
-        const SizedBox(height: 20),
-        _buildProductRow([
+              AppImages.applejuice, "Apple & Grape Juice", "2L", 12.99),
           _buildProductItem(
-              AppImages.applejuice, "Apple & Grape Juice", "2L", "\$12.99"),
-          _buildProductItem(
-              AppImages.orangejuice, "Orange Juice", "1.5L", "\$15.99"),
+              AppImages.orangejuice, "Orange Juice", "1.5L", 15.99),
         ]),
       ],
     );
   }
 
-  /// Row chứa 2 sản phẩm
   Widget _buildProductRow(List<Widget> items) {
     return Row(
       children: [
@@ -107,11 +102,11 @@ class _BeveragesScreenState extends State<BeveragesScreen> {
 
   /// Widget hiển thị 1 sản phẩm
   Widget _buildProductItem(
-      String imagePath, String title, String info, String price) {
+      String imagePath, String name, String detail, double price) {
     return BassicWidget(
-      imageProduct: Image.asset(imagePath, height: 60),
-      title: title,
-      information: info,
+      image: imagePath,
+      name: name,
+      detail: detail,
       price: price,
       onTap: () {},
     );

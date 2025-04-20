@@ -1,5 +1,8 @@
+import 'package:custom_rating_bar/custom_rating_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:foodapp_delivery/res/assets/app_images.dart';
+import 'package:foodapp_delivery/res/theme/colors/app_colors.dart';
+import 'package:foodapp_delivery/res/theme/fonts/app_fonts.dart';
 import 'package:foodapp_delivery/widget/bassic_button.dart';
 
 class ProductDetail extends StatefulWidget {
@@ -12,9 +15,13 @@ class ProductDetail extends StatefulWidget {
 class _ProductDetailState extends State<ProductDetail> {
   int quantity = 1;
   bool isExpanded = false;
+  bool isFavorite = false;
+  final double basePrice = 4.99;
 
   @override
   Widget build(BuildContext context) {
+    double totalPrice = basePrice * quantity; // Calculate total price
+
     return Scaffold(
       body: SafeArea(
         child: Column(
@@ -67,14 +74,23 @@ class _ProductDetailState extends State<ProductDetail> {
                       ],
                     ),
                   ),
-                  Icon(Icons.favorite_border),
+                  IconButton(
+                    icon: Icon(
+                      isFavorite ? Icons.favorite : Icons.favorite_border,
+                      color: isFavorite ? Colors.red : null,
+                    ),
+                    onPressed: () {
+                      setState(() {
+                        isFavorite = !isFavorite;
+                      });
+                    },
+                  ),
                 ],
               ),
             ),
 
             SizedBox(height: 16),
 
-            // Quantity + Price
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16),
               child: Row(
@@ -101,16 +117,16 @@ class _ProductDetailState extends State<ProductDetail> {
                     ],
                   ),
                   Spacer(),
-                  Text("\$(4.99",
-                      style:
-                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+                  Text(
+                    "\$${totalPrice.toStringAsFixed(2)}",
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                  ),
                 ],
               ),
             ),
 
             Divider(),
 
-            // Product Detail (expandable)
             ExpansionTile(
               title: Text("Product Detail"),
               initiallyExpanded: isExpanded,
@@ -141,14 +157,24 @@ class _ProductDetailState extends State<ProductDetail> {
             ),
 
             // Review
-            ListTile(
-              title: Text("Review"),
-              trailing: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: List.generate(
-                  5,
-                  (index) => Icon(Icons.star, color: Colors.orange, size: 20),
-                ),
+            Container(
+              padding: EdgeInsets.symmetric(horizontal: 16),
+              child: Row(
+                children: [
+                  Text(
+                    "Review",
+                    style:
+                        AppFonts.GilroyBasic600(16, AppColors.textColor_Black),
+                  ),
+                  Spacer(),
+                  RatingBar(
+                    filledIcon: Icons.star,
+                    emptyIcon: Icons.star_border,
+                    onRatingChanged: (value) => debugPrint('$value'),
+                    initialRating: 3,
+                    maxRating: 5,
+                  ),
+                ],
               ),
             ),
 

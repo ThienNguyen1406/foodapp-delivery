@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 
 class CartProvider extends ChangeNotifier {
-  final List<Map<String, dynamic>> _cartListItem = [];
 
+  final List<Map<String, dynamic>> _cartListItem = [];
+  
   List<Map<String, dynamic>> get cartList => _cartListItem;
 
-  //Thêm sản phẩm vào giỏ hàng
   void addToCart(Map<String, dynamic> product) {
     int index = _cartListItem
-        .indexWhere((item) => item['id'] == product['id']); //tìm sản phẩm
+        .indexWhere((item) => item['id'] == product['id']); 
     if (index != -1) {
       _cartListItem[index]['quantity'] +=
-          1; // nếu tồn tại thì thêm vào và +1 số lượng sản phẩm
+          1; 
     } else {
-      product['quantity'] = 1; //nếu chưa tồn tại thì thêm vào
+      product['quantity'] = 1; 
       _cartListItem.add(product);
     }
     notifyListeners();

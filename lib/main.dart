@@ -4,6 +4,8 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:foodapp_delivery/pages/login_screen.dart';
 import 'package:foodapp_delivery/provider/cart_provider.dart';
 import 'package:foodapp_delivery/provider/loading_provider.dart';
+import 'package:foodapp_delivery/provider/products_provider.dart';
+import 'package:foodapp_delivery/provider/user_provider.dart';
 import 'package:foodapp_delivery/router/app_router.dart';
 import 'package:foodapp_delivery/widget/key_board_dismis.dart';
 import 'package:foodapp_delivery/widget/loading_widget.dart';
@@ -15,7 +17,7 @@ import 'firebase_options.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  await initializeDateFormatting('vi', null); 
+  await initializeDateFormatting('vi', null);
 
   runApp(const MyApp());
 }
@@ -29,6 +31,8 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(create: (_) => LoadingProvider()),
         ChangeNotifierProvider(create: (_) => CartProvider()),
+        ChangeNotifierProvider(create: (_) => ProductsProvider()),
+        ChangeNotifierProvider(create: (_) => UserProvider()),
       ],
       child: Consumer<LoadingProvider>(
         builder: (context, loading, child) {

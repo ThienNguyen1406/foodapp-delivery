@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:foodapp_delivery/model/cart_item_model.dart';
+import 'package:foodapp_delivery/model/product_model.dart';
 import 'package:foodapp_delivery/res/assets/app_images.dart';
 import 'package:foodapp_delivery/res/theme/colors/app_colors.dart';
 import 'package:foodapp_delivery/res/theme/fonts/app_fonts.dart';
-import 'package:foodapp_delivery/router/app_router.dart';
 import 'package:foodapp_delivery/screen/account_screen.dart';
 import 'package:foodapp_delivery/screen/cart_screen.dart';
 import 'package:foodapp_delivery/screen/explore_screen.dart';
 import 'package:foodapp_delivery/screen/favorite_screen.dart';
-import 'package:foodapp_delivery/widget/bassic_widget.dart';
+import 'package:foodapp_delivery/widget/basic_widget.dart';
 import 'package:foodapp_delivery/widget/groceries_widget.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -68,8 +69,30 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 }
 
-class HomeScreenContent extends StatelessWidget {
+class HomeScreenContent extends StatefulWidget {
   const HomeScreenContent({super.key});
+
+  @override
+  State<HomeScreenContent> createState() => _HomeScreenContentState();
+}
+
+class _HomeScreenContentState extends State<HomeScreenContent> {
+  List<CartItemModel> cartList = [];
+  List<ProductModel> productList = [];
+
+  @override
+  void initState() {
+    super.initState();
+    addProductToList();
+  }
+
+  void addProductToList() {
+    for (var e in productList) {
+      if (e.categoryId != null) {
+        productList.add(e);
+      }
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -102,99 +125,64 @@ class HomeScreenContent extends StatelessWidget {
             _buildBanner(),
             const SizedBox(height: 16),
             _buildSection("Exclusive Offer"),
-            SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: Row(
-                children: [
-                  Container(
-                    padding: EdgeInsets.only(right: 10),
-                    child: BassicWidget(
-                      title: "Organic Bananas",
-                      information: "7pcs, Priceg",
-                      price: "\$4.99",
-                      imageProduct:
-                          Image(image: AssetImage(AppImages.Banana_Image)),
-                      onTap: () {},
-                    ),
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.pushNamed(context, AppRouter.productDetail);
-                    },
-                    child: Container(
-                      padding: EdgeInsets.only(right: 10),
-                      child: BassicWidget(
-                        title: "Red Apple",
-                        information: "1kg, Priceg",
-                        price: "\$4.99",
-                        imageProduct: Image(
-                          image: AssetImage(AppImages.RedApple_Image),
-                          height: 70,
-                        ),
-                        onTap: () {},
-                      ),
-                    ),
-                  ),
-                  Container(
-                    padding: EdgeInsets.only(right: 10),
-                    child: BassicWidget(
-                      title: "Organic Ginger",
-                      information: "1kg, Priceg",
-                      price: "\$4.99",
-                      imageProduct:
-                          Image(image: AssetImage(AppImages.GingerImage)),
-                      onTap: () {},
-                    ),
-                  ),
-                ],
-              ),
+            _buildProductSection(
+              products: [
+                BassicWidget(
+                  name: "Organic Bananas",
+                  unitValue: "7",
+                  unitName: "pcs",
+                  itemPrice: 4.99,
+                  image: AppImages.Banana_Image,
+                  onTap: () {},
+                ),
+                BassicWidget(
+                  name: "Red Apple",
+                  unitValue: "1",
+                  unitName: "kg",
+                  itemPrice: 4.99,
+                  image: AppImages.RedApple_Image,
+                  onTap: () {},
+                ),
+                BassicWidget(
+                  name: "Organic Ginger",
+                  unitValue: "1",
+                  unitName: "kg",
+                  itemPrice: 4.99,
+                  image: AppImages.GingerImage,
+                  onTap: () {},
+                ),
+              ],
             ),
             _buildSection("Best Selling"),
-            SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: Row(
-                children: [
-                  Container(
-                    padding: EdgeInsets.only(right: 10),
-                    child: BassicWidget(
-                      title: "Organic Pepper",
-                      information: "7pcs, Priceg",
-                      price: "\$4.99",
-                      imageProduct:
-                          Image(image: AssetImage(AppImages.Bell_Pepper)),
-                      onTap: () {},
-                    ),
-                  ),
-                  Container(
-                    padding: EdgeInsets.only(right: 10),
-                    child: BassicWidget(
-                      title: "Red Apple",
-                      information: "1kg, Priceg",
-                      price: "\$4.99",
-                      imageProduct: Image(
-                        image: AssetImage(AppImages.GingerImage),
-                      ),
-                      onTap: () {},
-                    ),
-                  ),
-                  Container(
-                    padding: EdgeInsets.only(right: 10),
-                    child: BassicWidget(
-                      title: "Eggs",
-                      information: "8pcs, Priceg",
-                      price: "\$4.99",
-                      imageProduct: Image(
-                        image: AssetImage(AppImages.EggsImage),
-                        height: 75,
-                      ),
-                      onTap: () {},
-                    ),
-                  ),
-                ],
-              ),
+            _buildProductSection(
+              products: [
+                BassicWidget(
+                  name: "Organic Pepper",
+                  unitValue: "7",
+                  unitName: "pcs",
+                  itemPrice: 4.99,
+                  image: AppImages.Bell_Pepper,
+                  onTap: () {},
+                ),
+                BassicWidget(
+                  name: "Red Apple",
+                  unitValue: "1",
+                  unitName: "kg",
+                  itemPrice: 4.99,
+                  image: AppImages.GingerImage,
+                  onTap: () {},
+                ),
+                BassicWidget(
+                  name: "Eggs",
+                  unitValue: "8",
+                  unitName: "pcs",
+                  itemPrice: 4.99,
+                  image: AppImages.EggsImage,
+                  onTap: () {},
+                ),
+              ],
             ),
             _buildSection("Groceries"),
-            //Groceries List
             SingleChildScrollView(
               scrollDirection: Axis.horizontal,
               child: Row(
@@ -213,48 +201,35 @@ class HomeScreenContent extends StatelessWidget {
                 ],
               ),
             ),
-            SizedBox(
-              height: 20,
-            ),
-            //Product List
-            SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: Row(
-                children: [
-                  Container(
-                    padding: EdgeInsets.only(right: 10),
-                    child: BassicWidget(
-                      title: "Beef Bone",
-                      information: "1kg, Priceg",
-                      price: "\$4.99",
-                      imageProduct:
-                          Image(image: AssetImage(AppImages.MeetImage)),
-                      onTap: () {},
-                    ),
-                  ),
-                  Container(
-                    padding: EdgeInsets.only(right: 10),
-                    child: BassicWidget(
-                      title: "Broiler Chicken",
-                      information: "1kg, Priceg",
-                      price: "\$4.99",
-                      imageProduct: Image(image: AssetImage(AppImages.chicken)),
-                      onTap: () {},
-                    ),
-                  ),
-                  Container(
-                    padding: EdgeInsets.only(right: 10),
-                    child: BassicWidget(
-                      title: "Beef Bone",
-                      information: "1kg, Priceg",
-                      price: "\$4.99",
-                      imageProduct:
-                          Image(image: AssetImage(AppImages.MeetImage)),
-                      onTap: () {},
-                    ),
-                  ),
-                ],
-              ),
+            SizedBox(height: 20),
+            _buildSection("Product List"),
+            _buildProductSection(
+              products: [
+                BassicWidget(
+                  name: "Beef Bone",
+                  unitValue: "1",
+                  unitName: "kg",
+                  itemPrice: 4.99,
+                  image: AppImages.MeetImage,
+                  onTap: () {},
+                ),
+                BassicWidget(
+                  name: "Broiler Chicken",
+                  unitValue: "1",
+                  unitName: "kg",
+                  itemPrice: 4.99,
+                  image: AppImages.chicken,
+                  onTap: () {},
+                ),
+                BassicWidget(
+                  name: "Beef Bone",
+                  unitValue: "1",
+                  unitName: "kg",
+                  itemPrice: 4.99,
+                  image: AppImages.MeetImage,
+                  onTap: () {},
+                ),
+              ],
             ),
           ],
         ),
@@ -312,6 +287,20 @@ class HomeScreenContent extends StatelessWidget {
             ),
           ),
         ],
+      ),
+    );
+  }
+
+  Widget _buildProductSection({required List<Widget> products}) {
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      child: Row(
+        children: products.map((product) {
+          return Container(
+            padding: EdgeInsets.only(right: 10),
+            child: product,
+          );
+        }).toList(),
       ),
     );
   }

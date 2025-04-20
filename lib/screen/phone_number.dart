@@ -14,21 +14,21 @@ class PhoneNumberScreen extends StatefulWidget {
 class _PhoneNumberScreenState extends State<PhoneNumberScreen> {
   final TextEditingController phoneController = TextEditingController();
 
-  // @override
-  // void dispose() {
-  //   phoneController.dispose();
-  //   super.dispose();
-  // }
+  @override
+  void dispose() {
+    phoneController.dispose();
+    super.dispose();
+  }
 
-  // @override
-  // void initState() {
-  //   super.initState();
-  // }
+  @override
+  void initState() {
+    super.initState();
+  }
 
-  // bool isValidPhoneNumber(String phone) {
-  //   final regex = RegExp(r'^[0-9]{10}$'); // Kiểm tra 10 số
-  //   return regex.hasMatch(phone);
-  // }
+  bool isValidPhoneNumber(String phone) {
+    final regex = RegExp(r'^[0-9]{10}$'); // Example regex for a 10-digit phone number
+    return regex.hasMatch(phone);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -117,7 +117,7 @@ class _PhoneNumberScreenState extends State<PhoneNumberScreen> {
                         // }
 
                         Navigator.pushNamed(
-                             context, AppRouter.notificationScreen);
+                            context, AppRouter.notificationScreen);
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: AppColors.primary_Color,

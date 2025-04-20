@@ -20,7 +20,7 @@ class ProductItemWidget extends StatefulWidget {
     this.price,
     this.initialQuantity = 1,
     this.onQuantityChanged,
-    this.onRemove,
+    this.onRemove, 
   }) : super(key: key);
 
   @override
