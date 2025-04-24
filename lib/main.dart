@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:foodapp_delivery/firebase/firebase_api.dart';
 import 'package:foodapp_delivery/pages/login_screen.dart';
 import 'package:foodapp_delivery/provider/cart_provider.dart';
 import 'package:foodapp_delivery/provider/loading_provider.dart';
@@ -18,6 +19,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   await initializeDateFormatting('vi', null);
+   await FirebaseApi().initNotifications();
 
   runApp(const MyApp());
 }

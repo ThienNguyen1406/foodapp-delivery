@@ -5,30 +5,21 @@ part 'api_response.g.dart';
 
 @JsonSerializable()
 class ApiResponse {
-  dynamic code;
-  dynamic data;
+  String? status;
   String? message;
-  bool? result;
-  // int? total;
-  // int? totalPage;
-  // int? pageSize;
-  // int? pageNumber;
+  dynamic? payload;
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   Response? dioResponse;
 
   ApiResponse({
-    this.code,
-    this.data,
+    this.status,
     this.message,
-    this.result,
-    // this.total,
-    // this.totalPage,
-    // this.pageSize,
-    // this.pageNumber,
+    this.payload,
   });
 
-  factory ApiResponse.fromJson(Map<String, dynamic> json) => _$ApiResponseFromJson(json);
+  factory ApiResponse.fromJson(Map<String, dynamic> json) =>
+      _$ApiResponseFromJson(json);
 
   Map<String, dynamic> toJson() => _$ApiResponseToJson(this);
 }

@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:foodapp_delivery/firebase/firebase_api.dart';
 import 'package:foodapp_delivery/provider/user_provider.dart';
 import 'package:foodapp_delivery/res/assets/app_images.dart';
 import 'package:foodapp_delivery/res/theme/colors/app_colors.dart';
 import 'package:foodapp_delivery/res/theme/fonts/app_fonts.dart';
 import 'package:foodapp_delivery/router/app_router.dart';
+import 'package:foodapp_delivery/utils/storage.dart';
 import 'package:foodapp_delivery/widget/bassic_button.dart';
 import 'package:provider/provider.dart';
 
@@ -17,6 +19,7 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
+
   bool _isObscure = true;
 
   @override
@@ -29,10 +32,10 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   void initState() {
-    
+    FirebaseApi().initNotifications();
     super.initState();
   }
-  
+
   @override
   Widget build(BuildContext context) {
     return Consumer<UserProvider>(
@@ -78,7 +81,6 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                     keyboardType: TextInputType.text,
                   ),
-        
                   SizedBox(
                     height: 20,
                   ),
@@ -123,10 +125,44 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                   ),
                   GestureDetector(
-                    onTap: () {
-                      setState(() {
-                        Navigator.pushNamed(context, AppRouter.signupScreen);
-                      });
+                    onTap: () async {
+                      final deviceToken = await StorageService.getDeviceToken();
+                      String email = emailController.text.trim();
+                      String password = passwordController.text.trim();
+
+                      if (email.isEmpty || password.isEmpty) {
+                        showDialog(
+                          context: context,
+                          builder: (context) {
+                            return const AlertDialog(
+                              title: Text("Thông báo"),
+                              content: Text("Vui lòng nhập email và mật khẩu"),
+                            );
+                          },
+                        );
+                        return;
+                      }
+
+                      String status = await userProvider.userLogin(
+                        username: "",
+                        password: password,
+                        deviceToken: deviceToken ?? "",
+                        email: email,
+                      );
+
+                      if (status == "Login successful") {
+                        Navigator.pushNamed(context, AppRouter.homeScreen);
+                      } else {
+                        showDialog(
+                          context: context,
+                          builder: (context) {
+                            return const AlertDialog(
+                              title: Text("Lỗi"),
+                              content: Text("Đăng nhập thất bại"),
+                            );
+                          },
+                        );
+                      }
                     },
                     child: BassicButton(title: "Log In"),
                   ),
@@ -144,7 +180,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                       InkWell(
                         onTap: () {
-                          Navigator.pushNamed(context, AppRouter.singinScreen);
+                          Navigator.pushNamed(context, AppRouter.signupScreen);
                         },
                         child: Text(
                           "Singup",
